@@ -1,64 +1,3 @@
-/*import 'package:firebase_ui_auth/firebase_ui_auth.dart';
-import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:crypto/crypto.dart';
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<ProfileScreen>(
-                  builder: (context) => ProfileScreen(
-                    appBar: AppBar(
-                      title: const Text('Perfil'),
-                    ),
-                    actions: [
-                      SignedOutAction((context) {
-                        Navigator.of(context).pop();
-                      })
-                    ],
-                    children: [
-                      const Divider(),
-                      Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: AspectRatio(
-                          aspectRatio: 1,
-                         // child: Image.asset('flutterfire_300x.png'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          )
-        ],
-        automaticallyImplyLeading: false,
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            //Image.asset('dash.png'),
-            Text(
-              'Bem vindo!',
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            const SignOutButton(),
-          ],
-        ),
-      ),
-    );
-  }
-}*/
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +18,10 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: const Icon(Icons.person),
+            iconSize: 50
+            ,
+            icon: const Icon(Icons.add_task),
+
             onPressed: () async {
               final user = FirebaseAuth.instance.currentUser;
               await Navigator.push(
@@ -95,10 +37,9 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            //Image.asset('dash.png'),
             Text(
               'Bem vindo!',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.displayMedium,
             ),
             const SignOutButton(),
           ],
@@ -167,7 +108,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 decoration: InputDecoration(labelText: 'Email'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, insira seu novo email';
+                    return 'Por favor, insira seu novo  email';
                   }
                   if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
                     return 'Por favor, insira um email válido';
@@ -218,7 +159,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       DocumentReference documentReferencer =
                       _Collection.doc();
 
-                     // await FirebaseFirestore.instance._Collection.doc(userCredential.user!.uid).set({
+
 
               Map<String, dynamic> data = <String, dynamic>{
                     'uid': userCredential.user!.uid,
